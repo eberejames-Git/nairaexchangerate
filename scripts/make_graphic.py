@@ -92,6 +92,6 @@ caption = (f"🇳🇬 Naira exchange rates · {datetime.date.today().strftime('%
            f"$1 = ₦{money(r['usd']['middle'])}\n£1 = ₦{money(r['gbp']['middle'])}\n€1 = ₦{money(r['eur']['middle'])}\n\n"
            f"UK parallel rate (updated {when(par['updated'])}):\n"
            f"Send £1 → ₦{money(par['send'],0)} · Buy £1 for ₦{money(par['buy'],0)}\n\n"
-           "Live rates & converter: nairaexchangerate.com\n#Naira #NairaToPound #NairaToDollar #ExchangeRate #Nigeria")
+           "Live rates & converter: nairaexchangerate.com\n" + (f"Daily rates on WhatsApp: {D['whatsappChannel']}\n" if D.get("whatsappChannel") else "") + "#Naira #NairaToPound #NairaToDollar #ExchangeRate #Nigeria")
 open(os.path.join(ROOT, "social", "caption.txt"), "w", encoding="utf-8").write(caption)
 print(caption)
