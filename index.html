@@ -60,6 +60,7 @@ button,input,select{font:inherit;color:inherit}
 :root[data-theme="dark"] .ticker{background:#000;color:#fff}
 .ticker-track{display:inline-flex;gap:34px;padding:9px 0;animation:tick 45s linear infinite;padding-left:100%}
 .ticker-track span b{font-family:var(--display);font-weight:800;margin-left:6px}
+.ticker-track .tick-intro{font-weight:800;color:#ff8a98;text-transform:uppercase;letter-spacing:.05em;font-size:.8rem}
 @keyframes tick{to{transform:translateX(-100%)}}
 @media (prefers-reduced-motion:reduce){.ticker-track{animation:none;padding-left:16px}}
 
@@ -601,8 +602,8 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
     var week = dayAgo(7);
 
     // ticker
-    var items = [["GBP","Dealer £", P.send]].concat(CURS.slice(0,9).map(function(c){ return [c[0].toUpperCase(), c[0].toUpperCase(), nv(c[0])]; }));
-    $("ticker").innerHTML = items.map(function(it){ return "<span>"+it[1]+"<b>₦"+fmt(it[2])+"</b></span>"; }).join("");
+    var items = CURS.filter(function(c){ return cbnRate(c[0]); }).map(function(c){ return [c[0].toUpperCase(), cbnRate(c[0])]; });
+    $("ticker").innerHTML = '<span class="tick-intro">Naira for 1 unit of each currency · Official CBN rate</span>' + items.map(function(it){ return "<span>"+it[0]+"<b>₦"+fmt(it[1])+"</b></span>"; }).join("");
 
     // board
     $("qSend").innerHTML = "₦" + whole(P.send) + " <small>/ £1</small>";
