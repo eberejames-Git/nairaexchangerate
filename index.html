@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23c8102e%22/%3E%3Ctext x=%2232%22 y=%2246%22 font-size=%2240%22 font-family=%22Arial%22 font-weight=%22900%22 fill=%22white%22 text-anchor=%22middle%22%3E%E2%82%A6%3C/text%3E%3C/svg%3E">
+<title>Naira Exchange Rate Today: Pound, Dollar, Euro to Naira | NairaExchangeRate</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Today's Naira exchange rates: UK parallel (black market) pound rate, mid-market rates for 15 currencies, converter, history and market news.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: deep-red masthead with a live ticker, a dealer "rate board" as the hero, then a two-column working area (rates + tools) on white. */
+:root{
+  --bg:#ffffff; --surface:#f7f3f3; --ink:#0a0506; --ink-2:#1c1315; --muted:#33282b; --line:#ece1e2;
+  --page:#fcf3f4; --red-line:#e48896; --chart:#8e0a1f; --red:#c8102e; --red-deep:#7d0a1c; --red-soft:#fdecee; --on-red:#ffffff; --on-red-2:#ffd7dc;
+  --up:#0b7a3b; --down:#c8102e; --amber:#9a6300; --amber-soft:#fff4dc;
+  --display:"Archivo","Arial Black",Arial,sans-serif;
+  --body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#110a0b; --surface:#1b1314; --ink:#fbf4f5; --ink-2:#f3eaec; --muted:#e0d3d6; --line:#33262a;
+  --red:#ff4258; --red-deep:#5e0814; --red-soft:#2a1216; --on-red:#ffffff; --on-red-2:#ffc9d0;
+  --up:#3ddc84; --down:#ff5a6c; --amber:#ffc04d; --amber-soft:#2b2210; --red-line:#7a2532; --chart:#e8364c; --page:#1d1013; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#110a0b; --surface:#1b1314; --ink:#fbf4f5; --ink-2:#f3eaec; --muted:#e0d3d6; --line:#33262a;
+  --red:#ff4258; --red-deep:#5e0814; --red-soft:#2a1216; --on-red:#ffffff; --on-red-2:#ffc9d0;
+  --up:#3ddc84; --down:#ff5a6c; --amber:#ffc04d; --amber-soft:#2b2210; --red-line:#7a2532; --chart:#e8364c; --page:#1d1013; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;line-height:1.1;margin:0;text-wrap:balance}
+h2{font-size:1.3rem;font-weight:800}
+a{color:var(--red);font-weight:600}
+.num{font-family:var(--display);font-variant-numeric:tabular-nums;font-weight:800}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+
+/* review */
+.review{background:var(--amber-soft);border-bottom:1px solid var(--line)}
+.review .wrap{padding-block:14px}
+.review b{color:var(--amber)}
+.review ol{margin:8px 0 0;padding-left:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.review li{font-size:.8rem;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.ptag{display:inline-flex;align-items:center;gap:4px;font-family:var(--body);font-size:.7rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--amber);background:var(--amber-soft);border:1px solid var(--amber);border-radius:6px;padding:1px 7px;margin-bottom:8px}
+
+/* masthead */
+.mast{background:var(--red-deep);color:var(--on-red)}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;color:var(--on-red);text-decoration:none;font-family:var(--display);font-weight:900;font-size:1.2rem;letter-spacing:-.02em}
+.logo i{display:grid;place-items:center;width:34px;height:34px;border-radius:8px;background:var(--on-red);color:var(--red-deep);font-style:normal;font-size:1.15rem}
+.logo span{color:var(--on-red-2)}
+.mast nav{display:flex;gap:20px}
+.mast nav a{color:var(--on-red);text-decoration:none;font-size:.9rem;font-weight:600;opacity:.9}
+.mast nav a:hover{opacity:1;text-decoration:underline}
+.ticker{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;font-size:.86rem;border-bottom:3px solid var(--red)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ticker{background:#000;color:#fff}}
+:root[data-theme="dark"] .ticker{background:#000;color:#fff}
+.ticker-track{display:inline-flex;gap:34px;padding:9px 0;animation:tick 45s linear infinite;padding-left:100%}
+.ticker-track span b{font-family:var(--display);font-weight:800;margin-left:6px}
+@keyframes tick{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.ticker-track{animation:none;padding-left:16px}}
+
+/* hero board */
+.hero{color:var(--on-red)}
+.hero .wrap{padding-block:24px 0}
+.hero-card{background:var(--red);border-radius:20px;padding:30px clamp(18px,3.5vw,36px) 34px;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;box-shadow:0 4px 8px rgba(40,0,8,.08),0 22px 48px rgba(120,0,20,.22)}
+.hero h1{font-size:clamp(1.9rem,4.4vw,3rem);font-weight:900;color:var(--on-red)}
+.hero .lede{color:var(--on-red-2);margin:10px 0 0;max-width:52ch;font-weight:500}
+.updated{display:inline-flex;gap:8px;align-items:center;margin-top:16px;font-size:.85rem;font-weight:600;background:rgba(0,0,0,.18);border-radius:999px;padding:5px 12px}
+.dot{width:8px;height:8px;border-radius:50%;background:#7dffa8;box-shadow:0 0 0 3px rgba(125,255,168,.25)}
+.board{background:var(--bg);color:var(--ink);border-radius:16px;padding:20px;box-shadow:0 18px 40px rgba(60,0,10,.25)}
+.board-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.board-head h2{font-size:1.05rem}
+.board-head small{color:var(--muted);font-size:.8rem;font-weight:600}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.quote{background:var(--surface);border-radius:12px;padding:14px}
+.quote .lbl{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.quote .val{font-size:clamp(1.45rem,2.8vw,1.85rem);line-height:1.15;margin-top:4px;color:var(--ink)}
+.quote .val small{font-size:1em;color:var(--ink);font-weight:800;white-space:nowrap}
+.quote .hint{font-size:.8rem;color:var(--ink-2);margin-top:4px}
+.calc{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px;font-size:.92rem;font-weight:600}
+.calc input{width:110px;border:1.5px solid var(--line);background:var(--bg);border-radius:8px;padding:7px 10px;font-weight:700}
+.calc output{font-family:var(--display);font-weight:800;color:var(--red);font-size:1.1rem}
+.board .stamp{margin-top:12px;font-size:.82rem;font-weight:600;color:var(--muted)}
+
+/* layout */
+main{padding-block:28px 10px}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
+.stack{display:grid;gap:24px;min-width:0}
+.panel{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+.panel.tint{background:var(--surface);border-color:transparent}
+.panel.float{background:var(--bg);border:2px solid var(--red-line);box-shadow:0 2px 4px rgba(40,0,8,.06),0 14px 32px rgba(40,0,8,.12)}
+.sub{color:var(--muted);font-size:.88rem;margin:4px 0 14px}
+.example{display:inline-block;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border:1px dashed var(--muted);border-radius:6px;padding:0 6px;margin-left:6px;vertical-align:middle}
+
+/* gap strip */
+.gaps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.gap{border-radius:12px;background:var(--surface);padding:14px}
+.gap .lbl{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.gap .v{font-size:1.5rem;margin-top:2px}
+.gap .n{font-size:.8rem;color:var(--ink-2)}
+
+/* tables */
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th{text-align:left;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:800;padding:8px;border-bottom:2px solid var(--ink)}
+td{padding:11px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+th.r,td.r{text-align:right}
+td.r{font-family:var(--display);font-variant-numeric:tabular-nums;font-weight:700}
+#rateBody tr{cursor:pointer}
+#rateBody tr:hover td{background:var(--red-soft)}
+.cur{display:flex;align-items:center;gap:10px}
+.cur .code{font-family:var(--display);font-weight:800;font-size:1rem}
+.cur .nm{color:var(--muted);font-size:.82rem}
+.src-tag{font-size:.65rem;font-weight:800;letter-spacing:.05em;color:var(--red);border:1px solid var(--red);border-radius:4px;padding:0 4px;vertical-align:middle}
+.badge{display:inline-grid;place-items:center;width:30px;height:22px;border-radius:5px;background:var(--surface);font-size:.7rem;font-weight:800;color:var(--ink-2);font-family:var(--display)}
+.chg{font-size:.85rem}
+.up{color:var(--up)} .down{color:var(--down)}
+
+/* converter */
+.conv{display:grid;gap:10px}
+.field label{display:block;font-size:.75rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.box{display:flex;border:2px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--bg)}
+.box:focus-within{border-color:var(--red)}
+.box input{flex:1;min-width:0;border:0;background:transparent;padding:12px;font-family:var(--display);font-weight:800;font-size:1.25rem;outline:none}
+.box select{border:0;border-left:2px solid var(--ink);background:var(--surface);padding:0 12px;font-weight:700;cursor:pointer}
+.swap{justify-self:center;border:0;background:var(--red-soft);color:var(--red);width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;font-weight:800}
+.conv-note{font-size:.95rem;font-weight:700;color:var(--ink)}
+.conv-note b{font-weight:900}
+
+/* chart */
+.chart-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.chart-head select{border:1.5px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 10px;font-weight:700}
+#chart{display:block;width:100%;height:auto;margin-top:12px}
+#chart text{fill:var(--ink);font-family:var(--body);font-size:11px;font-weight:700}
+.chart-foot{font-size:.85rem;color:var(--ink-2);margin-top:6px}
+
+/* report */
+.report p{margin:0 0 10px;max-width:68ch;color:var(--ink-2)}
+.report h3{font-size:1.15rem;margin:4px 0 10px}
+
+/* news */
+.news{list-style:none;margin:0;padding:0;display:grid}
+.news li{padding:12px 0;border-bottom:1px solid var(--line)}
+.news li:last-child{border-bottom:0}
+.news .src{font-size:.75rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--red)}
+.news .hl{font-weight:700;margin-top:2px;color:var(--ink)}
+.news .sm{font-size:.87rem;color:var(--muted)}
+
+/* buttons */
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:10px;padding:10px 14px;font-weight:700;font-size:.9rem;cursor:pointer;text-decoration:none;background:var(--surface);color:var(--ink)}
+.btn.primary{background:var(--red);color:var(--on-red)}
+.btn:hover{filter:brightness(.96)}
+.join{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--ink);color:var(--bg);border-radius:14px;padding:18px 20px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .join{background:var(--red-deep);color:#fff}}
+:root[data-theme="dark"] .join{background:var(--red-deep);color:#fff}
+.join h3{font-size:1.1rem}
+.join p{margin:2px 0 0;font-size:.88rem;opacity:.8}
+
+/* market board */
+.soon{border:0;background:var(--red-soft);box-shadow:0 2px 4px rgba(40,0,8,.06),0 14px 32px rgba(40,0,8,.12)}
+.soon .tag{display:inline-block;font-family:var(--display);font-size:1rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--on-red);background:var(--red);border-radius:999px;padding:6px 18px;margin-bottom:12px}
+.mk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.mk div{border:1.5px solid var(--ink);background:var(--bg);border-radius:10px;padding:12px 14px;font-size:.88rem;color:var(--ink)}
+.mk b{display:block;font-family:var(--display)}
+.mk small{display:block;margin-top:4px;font-size:.8rem;font-weight:700;color:var(--ink-2)}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding:12px 0}
+details:last-child{border-bottom:0}
+summary{cursor:pointer;font-weight:700}
+details p{margin:8px 0 0;color:var(--ink-2);max-width:68ch;font-size:.94rem}
+
+.panel.float.no-edge{border-color:transparent}
+.panel.float.pink{background:var(--red-soft)}
+.panel.pink .gap{background:var(--bg)}
+.btns.social{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sbtn{display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--ink);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px 8px;font-weight:700;font-size:.88rem;text-decoration:none;cursor:pointer;min-width:0}
+.sbtn:hover{background:var(--red-soft)}
+.sbtn.on,.sbtn.on:hover{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.sbtn.on i,.sbtn.on svg{color:var(--on-red)}
+.sbtn.copy.ready{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.sbtn i,.sbtn svg{font-size:1.15rem;flex:none}
+.sbtn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ic-wa{color:#25d366}.ic-fb{color:#1877f2}.ic-ig{color:#e4405f}
+.offers{display:grid;gap:10px}
+.offer{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;border:1.5px solid var(--line);border-radius:12px;padding:12px}
+.offer .mono{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;background:var(--red-soft);color:var(--red);font-family:var(--display);font-weight:900}
+.offer .logo-img{width:40px;height:40px;border-radius:10px;object-fit:contain;background:#fff}
+.offer b{display:block;font-family:var(--display);font-size:1rem}
+.offer span{font-size:.84rem;color:var(--ink-2)}
+.offer .btn{padding:8px 12px;font-size:.85rem}
+.disclose{font-size:.76rem;color:var(--muted);margin:12px 0 0}
+.ad{border:1.5px dashed var(--line);border-radius:12px;color:var(--muted);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;display:grid;place-items:center;min-height:90px}
+
+footer{border-top:1px solid var(--line);margin-top:28px}
+footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+@media (max-width:860px){
+  .hero-card{grid-template-columns:1fr}
+  .cols{grid-template-columns:minmax(0,1fr)}
+  .mast nav{display:none}
+}
+@media (max-width:520px){
+  .quotes,.gaps{grid-template-columns:1fr}
+  .mk{grid-template-columns:1fr}
+}
+</style>
+<style>[hidden]{display:none!important}body{margin:0}</style>
+</head>
+<body>
+
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/brands.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/fontawesome.min.js"></script>
+
+<!-- All editable site content lives in this block. The daily task updates it. -->
+<script type="application/json" id="site-data">
+{
+  "review": false,
+  "parallel": {
+    "label": "UK dealer rate",
+    "send": 1825,
+    "buy": 1920,
+    "updated": "2026-11-01T15:24",
+    "history": [
+      {
+        "date": "2026-10-31",
+        "send": 1825,
+        "buy": 1920
+      },
+      {
+        "date": "2026-11-01",
+        "send": 1825,
+        "buy": 1920
+      }
+    ]
+  },
+  "partners": [
+    {
+      "name": "Wise",
+      "text": "Send pounds to Nigerian bank accounts and hold multiple currencies.",
+      "cta": "Send money",
+      "url": ""
+    },
+    {
+      "name": "Revolut",
+      "text": "UK current account with a card for spending abroad.",
+      "cta": "Open account",
+      "url": ""
+    },
+    {
+      "name": "Monzo",
+      "text": "UK bank account with instant spending alerts and budgeting tools.",
+      "cta": "Open account",
+      "url": ""
+    },
+    {
+      "name": "LemFi",
+      "text": "Send money from the UK to Nigeria from your phone.",
+      "cta": "Get started",
+      "url": ""
+    }
+  ],
+  "cbn": {
+    "date": "2026-10-30",
+    "rates": {
+      "usd": {
+        "buy": 1345.2565,
+        "middle": 1345.7565,
+        "sell": 1346.2565
+      },
+      "gbp": {
+        "buy": 1802.2401,
+        "middle": 1802.91,
+        "sell": 1803.5798
+      },
+      "eur": {
+        "buy": 1502.1134,
+        "middle": 1502.6717,
+        "sell": 1503.23
+      },
+      "chf": {
+        "buy": 1632.9892,
+        "middle": 1633.5961,
+        "sell": 1634.2031
+      },
+      "cny": {
+        "buy": 202.203,
+        "middle": 202.2781,
+        "sell": 202.3533
+      },
+      "jpy": {
+        "buy": 8.5511,
+        "middle": 8.5543,
+        "sell": 8.5574
+      },
+      "aed": {
+        "buy": 366.2455,
+        "middle": 366.3817,
+        "sell": 366.5178
+      },
+      "sar": {
+        "buy": 358.4483,
+        "middle": 358.5815,
+        "sell": 358.7148
+      },
+      "zar": {
+        "buy": 80.6074,
+        "middle": 80.6373,
+        "sell": 80.6673
+      },
+      "xof": {
+        "buy": 2.2645,
+        "middle": 2.2745,
+        "sell": 2.2845
+      }
+    }
+  },
+  "news": [],
+  "whatsappChannel": ""
+}
+</script>
+
+<section class="review" id="reviewBar" hidden>
+  <div class="wrap">
+    <b>Preview for approval.</b> Each new idea is tagged on the page. Tell me which ones to keep, change or drop.
+    <ol id="reviewList"></ol>
+  </div>
+</section>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="logo" href="#top"><i>₦</i>NairaExchangeRate</a>
+    <nav aria-label="Sections"><a href="#rates">Rates</a><a href="#converter">Converter</a><a href="#history">History</a><a href="#news">News</a><a href="#market">Buy / Sell</a></nav>
+  </div>
+</header>
+<div class="ticker" data-p="1" aria-label="Rate ticker"><div class="ticker-track" id="ticker"></div></div>
+
+<section class="hero" id="top">
+  <div class="wrap"><div class="hero-card">
+    <div>
+      <h1>Naira exchange rate today</h1>
+      <p class="lede">Official, parallel market and mid-market Naira rates against the pound, dollar, euro and 12 more currencies. Free, and updated every day, wherever you are.</p>
+      <div class="updated"><span class="dot"></span><span id="heroDate">Loading…</span></div>
+    </div>
+    <div class="board" data-p="2">
+      <div class="board-head"><h2 id="boardTitle">UK parallel rate · GBP/NGN</h2></div>
+      <div class="quotes">
+        <div class="quote">
+          <div class="lbl">You send £, receive ₦</div>
+          <div class="val num" id="qSend">—</div>
+          <div class="hint">Naira paid out for every £1</div>
+        </div>
+        <div class="quote">
+          <div class="lbl">You pay ₦, receive £</div>
+          <div class="val num" id="qBuy">—</div>
+          <div class="hint">Naira needed for every £1</div>
+        </div>
+      </div>
+      <div class="calc"><label for="sendAmt">Send £</label><input id="sendAmt" type="number" inputmode="decimal" min="0" value="100"><span>→</span><output id="sendOut">—</output></div>
+      <div class="stamp" id="boardStamp"></div>
+    </div>
+  </div></div>
+</section>
+
+<main class="wrap">
+  <div class="cols">
+    <div class="stack">
+      <section class="panel float no-edge pink" data-p="3">
+        <h2>Official CBN rate</h2>
+        <p class="sub" id="cbnSub">Central rate published by the Central Bank of Nigeria.</p>
+        <div class="gaps" id="cbnTiles"></div>
+        <p class="sub" style="margin:12px 0 0">Source: Central Bank of Nigeria (CBN)</p>
+      </section>
+
+      <section class="panel float no-edge" id="rates">
+        <h2>Today's Naira rates</h2>
+        <p class="sub">Official rate: Naira for 1 unit of each currency. Tap a row to chart it.</p>
+        <div class="tbl"><table>
+          <thead><tr><th>Currency</th><th class="r">₦ per unit</th><th class="r">7-day</th></tr></thead>
+          <tbody id="rateBody"></tbody>
+        </table></div>
+      </section>
+
+      <section class="panel float no-edge pink" id="report" data-p="5">
+        <div class="report">
+          <h3 id="reportTitle">Pound to Naira today</h3>
+          <div id="reportBody"></div>
+        </div>
+      </section>
+
+      <section class="panel float no-edge pink" id="history" data-p="6">
+        <h2>Previous rates</h2>
+        <p class="sub">Official market rate for the last seven days, in Naira per unit.</p>
+        <div class="tbl"><table>
+          <thead><tr><th>Date</th><th class="r">UK £</th><th class="r">US $</th><th class="r">Canada C$</th><th class="r">EU €</th></tr></thead>
+          <tbody id="histBody"></tbody>
+        </table></div>
+      </section>
+
+      <section class="panel float no-edge pink" id="faq" data-p="10">
+        <h2>Questions people ask</h2>
+        <details><summary>What is the black market (parallel) rate?</summary><p>It's the rate street dealers and money transfer agents charge outside the official banking system. It's usually weaker than the official CBN rate, so you get more Naira for each pound or dollar.</p></details>
+        <details><summary>Why are there two dealer rates?</summary><p>Dealers buy pounds cheaper than they sell them. "You send £" is what you receive in Naira when you send pounds home. "You pay ₦" is what you pay in Naira to get pounds in the UK. The gap between them is the dealer's margin.</p></details>
+        <details><summary>How often are the rates updated?</summary><p>Mid-market rates refresh every morning. The UK dealer rate updates each afternoon once dealers publish their price, and always shows when it was last changed.</p></details>
+        <details><summary>Can I buy or sell currency through this site?</summary><p>No. This site publishes rates for information only and never handles money. Always confirm the rate and the bank account with your provider before you pay.</p></details>
+      </section>
+    </div>
+
+    <aside class="stack">
+      <section class="panel float" id="converter" data-p="4">
+        <h2>Converter</h2>
+        <p class="sub">Uses the official rate, not the parallel market rate.</p>
+        <div class="conv">
+          <div class="field"><label for="amt">Amount</label><div class="box"><input id="amt" type="number" inputmode="decimal" min="0" value="100"><select id="from" aria-label="From currency"></select></div></div>
+          <button class="swap" id="swap" type="button" aria-label="Swap currencies">⇅</button>
+          <div class="field"><label for="out">You get</label><div class="box"><input id="out" type="text" readonly><select id="to" aria-label="To currency"></select></div></div>
+          <div class="conv-note" id="convNote"></div>
+        </div>
+      </section>
+
+      <section class="panel float" data-p="7">
+        <div class="chart-head"><h2>30-day trend</h2><select id="trendCur" aria-label="Currency to chart"></select></div>
+        <svg id="chart" viewBox="0 0 360 190" role="img" aria-label="30-day trend chart"></svg>
+        <div class="chart-foot" id="chartFoot"></div>
+      </section>
+
+      <div class="join" id="join" data-p="9">
+        <div><h3>Get the rate on WhatsApp</h3><p>Join the channel for one message a day.</p></div>
+        <a class="btn primary" id="joinLink" href="#top" target="_blank" rel="noopener">Join channel</a>
+      </div>
+
+      <section class="panel" data-p="9">
+        <h2>Share today's rates</h2>
+        <p class="sub">Ready-made message for your groups.</p>
+        <div class="btns social">
+          <button class="sbtn net" type="button" data-net="wa" aria-pressed="false"><i class="fa-brands fa-whatsapp ic-wa" aria-hidden="true"></i><span>WhatsApp</span></button>
+          <button class="sbtn net" type="button" data-net="x" aria-pressed="false"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i><span>X</span></button>
+          <button class="sbtn net" type="button" data-net="fb" aria-pressed="false"><i class="fa-brands fa-facebook ic-fb" aria-hidden="true"></i><span>Facebook</span></button>
+          <button class="sbtn net" type="button" data-net="tt" aria-pressed="false"><i class="fa-brands fa-tiktok" aria-hidden="true"></i><span>TikTok</span></button>
+          <button class="sbtn net" type="button" data-net="ig" aria-pressed="false"><i class="fa-brands fa-instagram ic-ig" aria-hidden="true"></i><span>Instagram</span></button>
+          <a class="sbtn copy" id="copy" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Copy</span></a>
+        </div>
+        <p class="disclose" id="shareNote">Pick where to share, then tap Copy. We copy today's rates and open the app so you can paste them.</p>
+        <div hidden>
+        </div>
+      </section>
+
+      <section class="panel" id="news" data-p="8">
+        <h2>Market news</h2>
+        <p class="sub">Picked each morning.</p>
+        <ul class="news" id="newsList"></ul>
+      </section>
+
+      <section class="panel" id="partners" data-p="12">
+        <h2>Send money and bank smarter</h2>
+        <p class="sub">Accounts and transfer services our readers use.</p>
+        <div class="offers" id="offerList"></div>
+        <p class="disclose">Partner links. We may earn a commission if you open an account, at no cost to you. This is not financial advice; check each provider's fees and terms.</p>
+      </section>
+    </aside>
+  </div>
+
+  <section class="panel soon" id="market" data-p="11" style="margin-top:24px">
+    <span class="tag">Coming soon</span>
+    <h2>Naira buy / sell board</h2>
+    <p class="sub" style="margin-bottom:0">Post how much Naira, pounds, dollars or euros you want to buy or sell, with your WhatsApp contact, and other people can message you directly. The site only lists posts and never holds or sends money.</p>
+    <div class="mk" aria-hidden="true">
+      <div><b>Selling £500</b>Wants ₦ at 1,840 · Manchester<small>WhatsApp: +44 •••• · Example post</small></div>
+      <div><b>Buying £1,200</b>Paying ₦ at 1,910 · London<small>WhatsApp: +44 •••• · Example post</small></div>
+      <div><b>Selling $1,000</b>Wants ₦ at 1,400 · Lagos<small>WhatsApp: +234 •••• · Example post</small></div>
+      <div><b>Buying €800</b>Paying ₦ at 1,560 · Abuja<small>WhatsApp: +234 •••• · Example post</small></div>
+    </div>
+    <p class="disclose">Always confirm who you're dealing with before you send money. Never pay anyone you haven't verified.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© NairaExchangeRate.com</span><span>Rates are for information only and are not financial advice. Confirm with your provider before you transact.</span></div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var D = JSON.parse(document.getElementById("site-data").textContent);
+  var CURS = [
+    ["usd","US Dollar"],["gbp","British Pound"],["eur","Euro"],["cad","Canadian Dollar"],["aud","Australian Dollar"],
+    ["chf","Swiss Franc"],["cny","Chinese Yuan"],["jpy","Japanese Yen"],["inr","Indian Rupee"],["aed","UAE Dirham"],
+    ["sar","Saudi Riyal"],["zar","SA Rand"],["ghs","Ghana Cedi"],["kes","Kenyan Shilling"],["xof","CFA Franc"]
+  ];
+  var PROPOSALS = {
+    1:"Live rate ticker", 2:"UK dealer rate board (from Chris's message)", 3:"Official CBN rate",
+    4:"Converter", 5:"Daily rate report (helps Google traffic)", 6:"Previous rates table", 7:"30-day chart",
+    8:"Morning market news", 9:"WhatsApp channel and share buttons", 10:"FAQ section (helps Google)",
+    11:"Buy / sell board (coming soon)", 12:"Partner offers (affiliate links)"
+  };
+  function $(id){ return document.getElementById(id); }
+  function fmt(n, dp){
+    if (n == null || !isFinite(n)) return "—";
+    if (dp == null) dp = n >= 100 ? 2 : n >= 1 ? 2 : 4;
+    return n.toLocaleString("en-GB",{minimumFractionDigits:dp,maximumFractionDigits:dp});
+  }
+  function whole(n){ return n == null ? "—" : Math.round(n).toLocaleString("en-GB"); }
+  function dlong(iso){ return new Date(iso.slice(0,10)+"T12:00:00Z").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"}); }
+  function dshort(iso){ return new Date(iso.slice(0,10)+"T12:00:00Z").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"}); }
+  function addDays(iso,n){ var d=new Date(iso+"T00:00:00Z"); d.setUTCDate(d.getUTCDate()+n); return d.toISOString().slice(0,10); }
+  function time(iso){ return iso.length > 10 ? iso.slice(11,16) : ""; }
+
+  var S = { today:null, hist:{}, example:false };
+  var P = D.parallel;
+
+  // ---------- review tags ----------
+  if (D.review){
+    $("reviewBar").hidden = false;
+    $("reviewList").innerHTML = Object.keys(PROPOSALS).map(function(k){ return "<li><b>P"+k+"</b> "+PROPOSALS[k]+"</li>"; }).join("");
+    var seen = {};
+    Array.prototype.forEach.call(document.querySelectorAll("[data-p]"), function(el){
+      var k = el.getAttribute("data-p"); if (seen[k] && k !== "9") return; seen[k] = 1;
+      var t = document.createElement("div"); t.className = "ptag"; t.textContent = "P" + k + " · " + PROPOSALS[k];
+      if (k === "1"){ el.parentNode.insertBefore(Object.assign(document.createElement("div"),{className:"wrap",style:"padding-top:8px"}), el.nextSibling).appendChild(t); }
+      else if (el.classList.contains("join")){ el.parentNode.insertBefore(t, el); }
+      else el.insertBefore(t, el.firstChild);
+    });
+  }
+
+  // ---------- data loading ----------
+  function src(tag){ return ["https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@"+tag+"/v1/currencies/ngn.json","https://"+tag+".currency-api.pages.dev/v1/currencies/ngn.json"]; }
+  function getDay(tag){
+    var list = src(tag || "latest"), i = 0;
+    function next(){
+      if (i >= list.length) return Promise.reject(new Error("unavailable"));
+      var ctl = window.AbortController ? new AbortController() : null;
+      var t = setTimeout(function(){ ctl && ctl.abort(); }, 5000);
+      return fetch(list[i++], ctl ? {signal:ctl.signal} : {}).then(function(r){ clearTimeout(t); if (!r.ok) throw 0; return r.json(); })
+        .then(function(j){ var per = {}; CURS.forEach(function(c){ if (j.ngn[c[0]]) per[c[0]] = 1 / j.ngn[c[0]]; }); return {date:j.date, per:per}; })
+        .catch(next);
+    }
+    return next();
+  }
+  function useSnapshot(){
+    if (!D.snapshot){
+      // Live site: show the real CBN figures straight away, then live rates replace them.
+      var per = {}; Object.keys(D.cbn.rates).forEach(function(k){ per[k] = D.cbn.rates[k].middle; });
+      S.example = false; S.today = {date:D.cbn.date, per:per}; S.hist = {}; S.hist[S.today.date] = S.today; return;
+    }
+    S.example = !!D.snapshot.example;
+    S.today = {date:D.snapshot.date, per:D.snapshot.ngnPer};
+    S.hist = {}; S.hist[S.today.date] = S.today;
+    if (S.example){
+      // Example trend for the preview only. The live site uses real daily history.
+      for (var n = 1; n <= 30; n++){
+        var f = 1 - n*0.0011 + Math.sin(n/3.2)*0.004, per = {};
+        Object.keys(S.today.per).forEach(function(k){ per[k] = S.today.per[k]*f; });
+        S.hist[addDays(S.today.date,-n)] = {date:addDays(S.today.date,-n), per:per};
+      }
+    }
+  }
+  function perUnit(day,c){ return day && day.per[c] ? day.per[c] : null; }
+  function dayAgo(n){ return S.hist[addDays(S.today.date,-n)]; }
+
+  // ---------- render ----------
+  function renderAll(){
+    $("heroDate").textContent = "Rates for " + dlong(S.today.date) + (S.example ? " · example figures in this preview" : "");
+    var week = dayAgo(7);
+
+    // ticker
+    var items = [["GBP","Dealer £", P.send]].concat(CURS.slice(0,9).map(function(c){ return [c[0].toUpperCase(), c[0].toUpperCase(), nv(c[0])]; }));
+    $("ticker").innerHTML = items.map(function(it){ return "<span>"+it[1]+"<b>₦"+fmt(it[2])+"</b></span>"; }).join("");
+
+    // board
+    $("qSend").innerHTML = "₦" + whole(P.send) + " <small>/ £1</small>";
+    $("qBuy").innerHTML = "₦" + whole(P.buy) + " <small>/ £1</small>";
+    var ageDays = Math.round((new Date(S.today.date) - new Date(P.updated.slice(0,10))) / 864e5);
+    $("boardStamp").textContent = "Last updated " + dlong(P.updated) + (time(P.updated) ? ", " + time(P.updated) : "") + ". Updates each afternoon.";
+    calcSend();
+
+    // gap
+    var mid = perUnit(S.today,"gbp");
+    var C = D.cbn;
+    $("cbnSub").textContent = "Central rate published by the Central Bank of Nigeria on " + dlong(C.date) + ".";
+    $("cbnTiles").innerHTML = [["usd","US Dollar"],["gbp","British Pound"],["eur","Euro"]].map(function(c){
+      var r = C.rates[c[0]];
+      return '<div class="gap"><div class="lbl">1 '+c[0].toUpperCase()+'</div><div class="v num">₦'+fmt(r.middle)+'</div><div class="n">Buy '+fmt(r.buy)+' · Sell '+fmt(r.sell)+'</div></div>';
+    }).join("");
+
+    // table
+    $("rateBody").innerHTML = CURS.map(function(c){
+      var now = nv(c[0]), mNow = perUnit(S.today,c[0]), then = perUnit(week,c[0]), ch = "—", cls = "";
+      if (mNow && then){ var p = (mNow-then)/then*100; cls = p > 0.005 ? "down" : p < -0.005 ? "up" : ""; ch = (p>0?"+":"") + p.toFixed(2) + "%"; }
+      return '<tr data-c="'+c[0]+'"><td><div class="cur"><span class="badge">'+c[0].toUpperCase()+'</span><span><span class="code">'+c[0].toUpperCase()+'</span> <span class="nm">'+c[1]+'</span>'+(cbnRate(c[0])?' <span class="src-tag">CBN</span>':'')+'</span></div></td><td class="r">'+fmt(now)+'</td><td class="r chg '+cls+'">'+ch+'</td></tr>';
+    }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll("#rateBody tr"), function(tr){
+      tr.addEventListener("click", function(){ $("trendCur").value = tr.getAttribute("data-c"); drawChart(); });
+    });
+
+    renderReport(mid, week);
+    renderHistory();
+    renderNews();
+    renderOffers();
+    share();
+    convert();
+    drawChart();
+  }
+
+  function renderReport(mid, week){
+    var dt = dlong(S.today.date);
+    $("reportTitle").textContent = "Pound to Naira exchange rate today, " + dt.replace(/^\w+, /,"");
+    var midW = perUnit(week,"gbp"), usd = nv("usd"), eur = nv("eur"), off = nv("gbp");
+    var move = "";
+    if (mid && midW){
+      var p = (mid-midW)/midW*100;
+      move = Math.abs(p) < 0.05 ? "barely changed from a week ago" : (p > 0 ? "up " : "down ") + Math.abs(p).toFixed(1) + "% on the week, meaning the Naira has " + (p > 0 ? "weakened" : "strengthened") + " against the pound";
+    }
+    var paras = [
+      "UK dealers are paying <b>₦" + whole(P.send) + "</b> for every £1 sent to Nigeria, and charging <b>₦" + whole(P.buy) + "</b> for every £1 bought with Naira. That's a spread of ₦" + whole(P.buy - P.send) + " between the two sides.",
+      "The official CBN pound rate is <b>₦" + whole(off) + "</b>" + (move ? ", " + move : "") + ". The US dollar is at ₦" + whole(usd) + " and the euro at ₦" + whole(eur) + ".",
+      "Sending £100 through a UK dealer at today's rate pays out about ₦" + whole(P.send*100) + "."
+    ];
+    $("reportBody").innerHTML = paras.map(function(t){ return "<p>"+t+"</p>"; }).join("");
+  }
+
+  function renderHistory(){
+    var rows = [];
+    for (var n = 0; n < 7; n++){
+      var iso = addDays(S.today.date,-n), m = S.hist[iso];
+      rows.push("<tr><td>"+dshort(iso)+"</td>" + ["gbp","usd","cad","eur"].map(function(c){ return "<td class='r'>"+(m && m.per[c] ? fmt(m.per[c]) : "—")+"</td>"; }).join("") + "</tr>");
+    }
+    $("histBody").innerHTML = rows.join("");
+  }
+
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  function renderNews(){
+    $("news").hidden = !(D.news && D.news.length);
+    $("newsList").innerHTML = (D.news || []).map(function(n){
+      return '<li><div class="src">'+esc(n.source)+(n.example?' <span class="example">Example</span>':'')+'</div><div class="hl">'+(n.url && n.url[0] !== "#" ? '<a href="'+esc(n.url)+'" target="_blank" rel="noopener">'+esc(n.title)+'</a>' : esc(n.title))+'</div><div class="sm">'+esc(n.summary)+'</div></li>';
+    }).join("");
+  }
+
+  function renderOffers(){
+    if (D.review === false){
+      $("partners").hidden = !(D.partners || []).some(function(p){ return p.url; });
+      $("join").hidden = !D.whatsappChannel;
+    }
+    if (D.whatsappChannel) $("joinLink").href = D.whatsappChannel;
+    $("offerList").innerHTML = (D.partners || []).map(function(p){
+      var href = p.url || "#partners";
+      var mark = p.logo ? '<img class="logo-img" src="'+esc(p.logo)+'" alt="'+esc(p.name)+' logo">' : '<div class="mono">'+esc(p.name.charAt(0))+'</div>';
+      return '<div class="offer">'+mark+'<div><b>'+esc(p.name)+'</b><span>'+esc(p.text)+'</span></div><a class="btn primary" href="'+esc(href)+'"'+(p.url?' target="_blank" rel="sponsored noopener"':'')+'>'+esc(p.cta)+'</a></div>';
+    }).join("");
+  }
+  function shareText(){
+    var l = ["🇳🇬 Naira rates · " + dlong(S.today.date), "",
+      "UK dealer: send £1 → ₦" + whole(P.send), "UK dealer: buy £1 ← ₦" + whole(P.buy), "",
+      "Mid-market:"];
+    ["usd","gbp","eur","cad"].forEach(function(c){ l.push("1 " + c.toUpperCase() + " = ₦" + fmt(perUnit(S.today,c))); });
+    l.push("", "www.nairaexchangerate.com");
+    return l.join("\n");
+  }
+  var NETS = {
+    wa:{name:"WhatsApp", url:function(t){ return "https://wa.me/?text=" + t; }},
+    x:{name:"X", url:function(t){ return "https://twitter.com/intent/tweet?text=" + t; }},
+    fb:{name:"Facebook", url:function(){ return "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("https://www.nairaexchangerate.com"); }},
+    tt:{name:"TikTok", url:function(){ return "https://www.tiktok.com/upload"; }},
+    ig:{name:"Instagram", url:function(){ return "https://www.instagram.com/"; }}
+  };
+  var selNet = null;
+  function share(){
+    var c = $("copy"), lab = c.querySelector("span");
+    Array.prototype.forEach.call(document.querySelectorAll(".sbtn.net"), function(b){
+      var on = b.getAttribute("data-net") === selNet;
+      b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    if (selNet){
+      c.href = NETS[selNet].url(encodeURIComponent(shareText()));
+      c.classList.add("ready"); lab.textContent = "Copy & open";
+    } else {
+      c.href = "#"; c.classList.remove("ready"); lab.textContent = "Copy";
+    }
+  }
+
+  // converter
+  function fill(){
+    var o = '<option value="ngn">NGN</option>' + CURS.map(function(c){ return '<option value="'+c[0]+'">'+c[0].toUpperCase()+'</option>'; }).join("");
+    $("from").innerHTML = o; $("to").innerHTML = o; $("from").value = "gbp"; $("to").value = "ngn";
+    $("trendCur").innerHTML = CURS.map(function(c){ return '<option value="'+c[0]+'">'+c[0].toUpperCase()+' · '+c[1]+'</option>'; }).join("");
+    $("trendCur").value = "gbp";
+  }
+  function cbnRate(c){ var r = D.cbn && D.cbn.rates && D.cbn.rates[c]; return r ? r.middle : null; }
+  function nv(c){ return c === "ngn" ? 1 : (cbnRate(c) || perUnit(S.today,c)); }
+  function convert(){
+    if (!S.today) return;
+    var a = parseFloat($("amt").value) || 0, f = $("from").value, t = $("to").value, r = nv(f)/nv(t);
+    $("out").value = isFinite(r) ? fmt(a*r, a*r >= 1 ? 2 : 4) : "—";
+    $("convNote").innerHTML = "1 " + f.toUpperCase() + " = <b>" + fmt(r, r >= 1 ? 2 : 6) + " " + t.toUpperCase() + "</b>" + " · " + ((f==="ngn"||cbnRate(f)) && (t==="ngn"||cbnRate(t)) ? "Official CBN rate" : "Official market rate");
+  }
+  function calcSend(){
+    var a = parseFloat($("sendAmt").value) || 0;
+    $("sendOut").textContent = "₦" + whole(a * P.send);
+  }
+
+  // chart
+  function drawChart(){
+    var c = $("trendCur").value, svg = $("chart");
+    var pts = Object.keys(S.hist).sort().map(function(d){ return [d, perUnit(S.hist[d],c)]; }).filter(function(p){ return p[1]; });
+    if (pts.length < 2){ svg.innerHTML = ""; $("chartFoot").textContent = "Trend appears once a few days of rates are loaded."; return; }
+    var v = pts.map(function(p){ return p[1]; }), lo = Math.min.apply(null,v), hi = Math.max.apply(null,v);
+    var pad = (hi-lo)*0.2 || hi*0.01, y0 = lo-pad, y1 = hi+pad;
+    var L = 46, R = 352, T = 10, B = 162;
+    function X(i){ return L + i*(R-L)/(pts.length-1); }
+    function Y(val){ return B - (val-y0)/(y1-y0)*(B-T); }
+    var line = pts.map(function(p,i){ return (i?"L":"M")+X(i).toFixed(1)+" "+Y(p[1]).toFixed(1); }).join(" ");
+    var g = "";
+    [lo, (lo+hi)/2, hi].forEach(function(val){
+      var y = Y(val).toFixed(1);
+      g += '<line x1="'+L+'" x2="'+R+'" y1="'+y+'" y2="'+y+'" stroke="var(--line)" stroke-width="1"/><text x="'+(L-6)+'" y="'+(+y+4)+'" text-anchor="end">'+whole(val)+'</text>';
+    });
+    var last = pts.length-1;
+    g += '<path d="'+line+' L'+R+' '+B+' L'+L+' '+B+' Z" fill="var(--chart)" opacity=".14"/>';
+    g += '<path d="'+line+'" fill="none" stroke="var(--chart)" stroke-width="2.75" stroke-linejoin="round" stroke-linecap="round"/>';
+    g += '<circle cx="'+X(last)+'" cy="'+Y(pts[last][1])+'" r="4.5" fill="var(--chart)" stroke="var(--bg)" stroke-width="2"/>';
+    g += '<text x="'+L+'" y="182">'+dshort(pts[0][0])+'</text><text x="'+R+'" y="182" text-anchor="end">'+dshort(pts[last][0])+'</text>';
+    svg.innerHTML = g;
+    var p = (pts[last][1]-pts[0][1])/pts[0][1]*100;
+    $("chartFoot").innerHTML = "₦ per 1 " + c.toUpperCase() + ". 30-day change <b class='"+(p>0?"down":"up")+"'>"+(p>0?"+":"")+p.toFixed(2)+"%</b>" + (S.example ? " <span class='example'>Example trend</span>" : "");
+  }
+
+  // events
+  ["amt","from","to"].forEach(function(id){ $(id).addEventListener("input", convert); });
+  $("swap").addEventListener("click", function(){ var f=$("from").value; $("from").value=$("to").value; $("to").value=f; convert(); });
+  $("trendCur").addEventListener("change", drawChart);
+  $("sendAmt").addEventListener("input", calcSend);
+  Array.prototype.forEach.call(document.querySelectorAll(".sbtn.net"), function(b){
+    b.addEventListener("click", function(){
+      var n = b.getAttribute("data-net");
+      selNet = selNet === n ? null : n;
+      share();
+      $("shareNote").textContent = selNet ? NETS[selNet].name + " selected. Tap Copy to copy today's rates and open " + NETS[selNet].name + "." : "Pick where to share, then tap Copy. We copy today's rates and open the app so you can paste them.";
+    });
+  });
+  $("copy").addEventListener("click", function(e){
+    var t = shareText(), lab = this.querySelector("span");
+    if (!selNet) e.preventDefault();
+    function done(m){ lab.textContent = m; setTimeout(share, 1800); }
+    try { navigator.clipboard.writeText(t).then(function(){ done("Copied"); $("shareNote").textContent = "Rates copied. Paste them into your message, post or caption."; }, function(){ done("Copy failed"); }); } catch(err){ done("Copy failed"); }
+  });
+
+  // boot: show saved figures immediately, then replace with live rates if reachable
+  fill(); useSnapshot(); renderAll();
+  getDay().then(function(day){
+    S.example = false; S.today = day; S.hist = {}; S.hist[day.date] = day; renderAll();
+    var ns = [1,2,3,4,5,6,7,10,13,16,19,22,25,28,30];
+    return Promise.all(ns.map(function(n){ var iso = addDays(day.date,-n); return getDay(iso).then(function(h){ S.hist[iso] = h; }).catch(function(){}); }));
+  }).then(function(){ if (!S.example) renderAll(); }).catch(function(){ /* keep saved figures */ });
+})();
+</script>
+
+</body>
+</html>
