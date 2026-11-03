@@ -257,7 +257,7 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
       "name": "Monzo",
       "text": "UK bank account with instant spending alerts and budgeting tools.",
       "cta": "Open account",
-      "url": ""
+      "url": "https://join.monzo.com/c/wsxy7qc"
     },
     {
       "name": "LemFi",
@@ -666,7 +666,8 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
       $("join").hidden = !D.whatsappChannel;
     }
     if (D.whatsappChannel) $("joinLink").href = D.whatsappChannel;
-    $("offerList").innerHTML = (D.partners || []).map(function(p){
+    var list = (D.partners || []).filter(function(p){ return D.review !== false || p.url; });
+    $("offerList").innerHTML = list.map(function(p){
       var href = p.url || "#partners";
       var mark = p.logo ? '<img class="logo-img" src="'+esc(p.logo)+'" alt="'+esc(p.name)+' logo">' : '<div class="mono">'+esc(p.name.charAt(0))+'</div>';
       return '<div class="offer">'+mark+'<div><b>'+esc(p.name)+'</b><span>'+esc(p.text)+'</span></div><a class="btn primary" href="'+esc(href)+'"'+(p.url?' target="_blank" rel="sponsored noopener"':'')+'>'+esc(p.cta)+'</a></div>';
