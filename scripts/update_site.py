@@ -8,7 +8,8 @@ matching keys in the site data:
   "cbn":      {"date": "YYYY-MM-DD", "rates": {"usd": {"buy":..,"middle":..,"sell":..}, ...}}
   "parallel": {"send": 1825, "buy": 1920, "updated": "YYYY-MM-DDTHH:MM"}
               (history is appended automatically, max 30 days)
-  "news":     [{"source":"..","title":"..","summary":"..","url":"https://.."}]
+  "news":     [{"source":"..","title":"..","summary":"..","url":"https://..","date":"YYYY-MM-DD"}]
+              (new stories are added first; the list keeps the 6 newest)
   "partners", "whatsappChannel": replaced as given.
 """
 import json, re, sys
@@ -43,9 +44,15 @@ def main(patch_path):
         par["history"] = sorted(hist, key=lambda h: h["date"])[-30:]
 
     if "news" in patch:
-        for n in patch["news"]:
+        # New stories go first; older ones fill the rest. Always keep up to 6, no duplicate links.
+        merged, seen = [], set()
+        for n in patch["news"] + data.get("news", []):
             assert n["url"].startswith("https://"), "news url must be https"
-        data["news"] = patch["news"][:5]
+            if n.get("example") or n["url"] in seen:
+                continue
+            seen.add(n["url"])
+            merged.append(n)
+        data["news"] = merged[:6]
 
     for k in ("partners", "whatsappChannel"):
         if k in patch:

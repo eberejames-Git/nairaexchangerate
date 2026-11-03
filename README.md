@@ -18,4 +18,4 @@ Keys: `cbn`, `parallel`, `news`, `partners`, `whatsappChannel` (see the script f
 ## Daily update
 - CBN rates: published each business day around 18:00 Lagos time.
 - UK dealer rate: from the daily "NAIRA RATE" email in Gmail.
-- News: 3-5 Naira/FX headlines, summarised in our own words and linked to the source.
+- News: the 6 latest Nigerian economy and money headlines, summarised in our own words and linked to the source.
