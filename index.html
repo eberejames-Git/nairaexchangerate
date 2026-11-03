@@ -194,6 +194,9 @@ details p{margin:8px 0 0;color:var(--ink-2);max-width:68ch;font-size:.94rem}
 .offer b{display:block;font-family:var(--display);font-size:1rem}
 .offer span{font-size:.84rem;color:var(--ink-2)}
 .offer .btn{padding:8px 12px;font-size:.85rem}
+.offer .qr{margin-top:6px}
+.offer .qr summary{cursor:pointer;font-size:.8rem;font-weight:700;color:var(--red)}
+.offer .qr img{display:block;margin-top:8px;width:160px;height:160px;border-radius:8px;border:1.5px solid var(--line);background:#fff}
 .disclose{font-size:.76rem;color:var(--muted);margin:12px 0 0}
 .ad{border:1.5px dashed var(--line);border-radius:12px;color:var(--muted);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;display:grid;place-items:center;min-height:90px}
 
@@ -266,6 +269,13 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
       "cta": "Get started",
       "url": "https://referral.lemfi.com/SrPEPnDp74b",
       "logo": "assets/lemfi.png"
+    },
+    {
+      "name": "Virgin Media",
+      "text": "Fast UK broadband, TV and mobile. Sign up with our link or scan the QR code on your phone.",
+      "cta": "See deals",
+      "url": "https://aklam.io/pl37Lg0H",
+      "qr": "assets/virginmedia-qr.png"
     }
   ],
   "cbn": {
@@ -672,7 +682,8 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
     $("offerList").innerHTML = list.map(function(p){
       var href = p.url || "#partners";
       var mark = p.logo ? '<img class="logo-img" src="'+esc(p.logo)+'" alt="'+esc(p.name)+' logo">' : '<div class="mono">'+esc(p.name.charAt(0))+'</div>';
-      return '<div class="offer">'+mark+'<div><b>'+esc(p.name)+'</b><span>'+esc(p.text)+'</span></div><a class="btn primary" href="'+esc(href)+'"'+(p.url?' target="_blank" rel="sponsored noopener"':'')+'>'+esc(p.cta)+'</a></div>';
+      var qr = p.qr ? '<details class="qr"><summary>Show QR code</summary><img src="'+esc(p.qr)+'" alt="QR code for '+esc(p.name)+' offer" width="160" height="160"></details>' : '';
+      return '<div class="offer">'+mark+'<div><b>'+esc(p.name)+'</b><span>'+esc(p.text)+'</span>'+qr+'</div><a class="btn primary" href="'+esc(href)+'"'+(p.url?' target="_blank" rel="sponsored noopener"':'')+'>'+esc(p.cta)+'</a></div>';
     }).join("");
   }
   function shareText(){
