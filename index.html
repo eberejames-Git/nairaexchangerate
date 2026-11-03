@@ -195,7 +195,9 @@ details p{margin:8px 0 0;color:var(--ink-2);max-width:68ch;font-size:.94rem}
 .offer b{display:block;font-family:var(--display);font-size:1rem}
 .offer span{font-size:.84rem;color:var(--ink-2)}
 .offer .btn{padding:8px 12px;font-size:.85rem}
-.offer .qr{margin-top:6px}
+.offer .qr,.join .qr{margin-top:6px}
+.join .qr summary{cursor:pointer;font-size:.8rem;font-weight:700;color:inherit;opacity:.85}
+.join .qr img{display:block;margin-top:8px;width:160px;height:160px;border-radius:8px;background:#fff}
 .offer .qr summary{cursor:pointer;font-size:.8rem;font-weight:700;color:var(--red)}
 .offer .qr img{display:block;margin-top:8px;width:160px;height:160px;border-radius:8px;border:1.5px solid var(--line);background:#fff}
 .disclose{font-size:.76rem;color:var(--muted);margin:12px 0 0}
@@ -379,7 +381,7 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
       "date": "2026-11-01"
     }
   ],
-  "whatsappChannel": ""
+  "whatsappChannel": "https://chat.whatsapp.com/FnHiJwIB5dN2aOAuuODgca"
 }
 </script>
 
@@ -488,8 +490,9 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
       </section>
 
       <div class="join" id="join" data-p="9">
-        <div><h3>Get the rate on WhatsApp</h3><p>Join the channel for one message a day.</p></div>
-        <a class="btn primary" id="joinLink" href="#top" target="_blank" rel="noopener">Join channel</a>
+        <div><h3>Get the rate on WhatsApp</h3><p>Join our WhatsApp group for the daily Naira rate.</p>
+          <details class="qr"><summary>Show QR code</summary><img src="assets/whatsapp-qr.png" alt="QR code to join the NairaExchangeRate WhatsApp group" width="160" height="160"></details></div>
+        <a class="btn primary" id="joinLink" href="#top" target="_blank" rel="noopener">Join group</a>
       </div>
 
       <section class="panel" data-p="9">
