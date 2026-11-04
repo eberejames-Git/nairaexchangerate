@@ -15,6 +15,8 @@ matching keys in the site data:
 import json, re, sys
 
 PATH = "index.html"
+# Competitor sites whose stories must never appear in the news list.
+BLOCKED_NEWS = ("nairametrics",)
 pat = re.compile(r'(<script type="application/json" id="site-data">)(.*?)(</script>)', re.S)
 
 def main(patch_path):
@@ -49,6 +51,8 @@ def main(patch_path):
         for n in patch["news"] + data.get("news", []):
             assert n["url"].startswith("https://"), "news url must be https"
             if n.get("example") or n["url"] in seen:
+                continue
+            if any(b in (n["url"] + " " + n.get("source", "")).lower() for b in BLOCKED_NEWS):
                 continue
             seen.add(n["url"])
             merged.append(n)
