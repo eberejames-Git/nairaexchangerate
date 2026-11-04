@@ -202,7 +202,9 @@ details p{margin:8px 0 0;color:var(--ink-2);max-width:68ch;font-size:.94rem}
 .join .qr img{display:block;margin-top:8px;width:160px;height:160px;border-radius:8px;background:#fff}
 .offer .qr summary{cursor:pointer;font-size:.8rem;font-weight:700;color:var(--red)}
 .offer .qr img{display:block;margin-top:8px;width:160px;height:160px;border-radius:8px;border:1.5px solid var(--line);background:#fff}
-.ads{border-style:dashed}
+.ads{border-style:dashed;display:flex;flex-direction:column}
+.ad-house{flex:1}
+@media (min-width:861px){.cols>.stack:first-child{align-self:stretch;display:flex;flex-direction:column}.cols>.stack:first-child>#ads{flex:1}.ad-house{align-content:center;text-align:left}}
 .ad-label{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
 .ad-google{min-height:250px}
 .ad-house{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:center;background:var(--surface);border-radius:12px;padding:16px}
