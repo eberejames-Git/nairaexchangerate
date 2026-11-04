@@ -202,6 +202,14 @@ details p{margin:8px 0 0;color:var(--ink-2);max-width:68ch;font-size:.94rem}
 .join .qr img{display:block;margin-top:8px;width:160px;height:160px;border-radius:8px;background:#fff}
 .offer .qr summary{cursor:pointer;font-size:.8rem;font-weight:700;color:var(--red)}
 .offer .qr img{display:block;margin-top:8px;width:160px;height:160px;border-radius:8px;border:1.5px solid var(--line);background:#fff}
+.ads{border-style:dashed}
+.ad-label{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.ad-google{min-height:250px}
+.ad-house{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:center;background:var(--surface);border-radius:12px;padding:16px}
+.ad-house b{font-family:var(--display);font-size:1.05rem;grid-column:1}
+.ad-house span{font-size:.86rem;color:var(--ink-2);grid-column:1}
+.ad-house .btn{grid-column:2;grid-row:1/3;padding:8px 14px;font-size:.85rem}
+@media (max-width:520px){.ad-house{grid-template-columns:1fr}.ad-house .btn{grid-column:1;grid-row:auto;justify-self:start}}
 .disclose{font-size:.76rem;color:var(--muted);margin:12px 0 0}
 .ad{border:1.5px dashed var(--line);border-radius:12px;color:var(--muted);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;display:grid;place-items:center;min-height:90px}
 
@@ -230,6 +238,11 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
 <script type="application/json" id="site-data">
 {
   "review": false,
+  "ads": {
+    "adsenseClient": "",
+    "adsenseSlot": "",
+    "direct": []
+  },
   "parallel": {
     "label": "UK dealer rate",
     "send": 1840.0,
@@ -477,6 +490,18 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
         <details><summary>How often are the rates updated?</summary><p>Mid-market rates refresh every morning. The UK dealer rate updates each afternoon once dealers publish their price, and always shows when it was last changed.</p></details>
         <details><summary>Can I buy or sell currency through this site?</summary><p>No. This site publishes rates for information only and never handles money. Always confirm the rate and the bank account with your provider before you pay.</p></details>
       </section>
+
+      <section class="panel ads" id="ads" aria-label="Advertisements">
+        <div class="ad-label">Advertisement</div>
+        <div id="adGoogle" class="ad-google" hidden></div>
+        <div id="adDirect" class="offers" hidden></div>
+        <div id="adHouse" class="ad-house">
+          <b>Advertise here</b>
+          <span>Reach Nigerians in the UK who check the Naira rate every day. Ideal for money transfer, banking, savings, insurance and mortgage brands.</span>
+          <a class="btn primary" href="mailto:nairaexchanger@gmail.com?subject=Advertising%20on%20NairaExchangeRate.com">Enquire</a>
+        </div>
+        <p class="disclose">Ads are paid placements and not a recommendation. This is not financial advice; check each provider's fees and terms, and that UK financial firms are authorised by the FCA.</p>
+      </section>
     </div>
 
     <aside class="stack">
@@ -671,6 +696,7 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
     renderHistory();
     renderNews();
     renderOffers();
+    renderAds();
     share();
     convert();
     drawChart();
@@ -710,6 +736,26 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
     }).join("");
   }
 
+  function renderAds(){
+    var A = D.ads || {}, any = false;
+    if (/^ca-pub-\d+$/.test(A.adsenseClient || "") && A.adsenseSlot){
+      var g = $("adGoogle"); g.hidden = false; any = true;
+      g.innerHTML = '<ins class="adsbygoogle" style="display:block" data-ad-client="'+esc(A.adsenseClient)+'" data-ad-slot="'+esc(A.adsenseSlot)+'" data-ad-format="auto" data-full-width-responsive="true"></ins>';
+      var sc = document.createElement("script"); sc.async = true; sc.crossOrigin = "anonymous";
+      sc.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(A.adsenseClient);
+      document.head.appendChild(sc);
+      try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+    }
+    var dl = (A.direct || []).filter(function(a){ return a.url; });
+    if (dl.length){
+      any = true; $("adDirect").hidden = false;
+      $("adDirect").innerHTML = dl.map(function(a){
+        var mark = a.logo ? '<img class="logo-img" src="'+esc(a.logo)+'" alt="'+esc(a.name)+' logo">' : '<div class="mono">'+esc(a.name.charAt(0))+'</div>';
+        return '<div class="offer">'+mark+'<div><b>'+esc(a.name)+'</b><span>'+esc(a.text)+'</span></div><a class="btn primary" href="'+esc(a.url)+'" target="_blank" rel="sponsored noopener">'+esc(a.cta || "Learn more")+'</a></div>';
+      }).join("");
+    }
+    $("adHouse").hidden = any;
+  }
   function renderOffers(){
     if (D.review === false){
       $("partners").hidden = !(D.partners || []).some(function(p){ return p.url; });
