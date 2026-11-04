@@ -196,6 +196,7 @@ details p{margin:8px 0 0;color:var(--ink-2);max-width:68ch;font-size:.94rem}
 .offer b{display:block;font-family:var(--display);font-size:1rem}
 .offer span{font-size:.84rem;color:var(--ink-2)}
 .offer .btn{padding:8px 12px;font-size:.85rem}
+.offer .promo{font-family:var(--display);font-weight:900;color:var(--ink);background:var(--line);padding:1px 6px;border-radius:6px;letter-spacing:.03em;white-space:nowrap}
 .offer .qr,.join .qr{margin-top:6px}
 .join .qr summary{cursor:pointer;font-size:.8rem;font-weight:700;color:inherit;opacity:.85}
 .join .qr img{display:block;margin-top:8px;width:160px;height:160px;border-radius:8px;background:#fff}
@@ -277,7 +278,15 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
       "text": "Send money from the UK to Nigeria from your phone. Use code JAME2PIP when you sign up for £50 LemFi Cash.",
       "cta": "Get started",
       "url": "https://referral.lemfi.com/SrPEPnDp74b",
-      "logo": "assets/lemfi.png"
+      "logo": "assets/lemfi.png",
+      "code": "JAME2PIP"
+    },
+    {
+      "name": "Taptap Send",
+      "text": "Send money from the UK to Nigeria with no transfer fee. Redeem code JAMES8447 and get £10.00 when you send £150.00 or more.",
+      "cta": "Get the app",
+      "url": "https://taptapsend.onelink.me/Lrab/appreferral",
+      "code": "JAMES8447"
     },
     {
       "name": "Virgin Media",
@@ -488,6 +497,13 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
         <div class="chart-foot" id="chartFoot"></div>
       </section>
 
+      <section class="panel" id="partners" data-p="12">
+        <h2>Send money and bank smarter</h2>
+        <p class="sub">Accounts and transfer services our readers use.</p>
+        <div class="offers" id="offerList"></div>
+        <p class="disclose">Partner links. We may earn a commission if you open an account, at no cost to you. This is not financial advice; check each provider's fees and terms. <a href="/privacy#partners">How partner links work</a></p>
+      </section>
+
       <div class="join" id="join" data-p="9">
         <div><h3>Get the rate on WhatsApp</h3><p>Follow our WhatsApp channel for the daily Naira rate. Your number stays private.</p>
           <details class="qr"><summary>Show QR code</summary><img src="assets/whatsapp-qr.png" alt="QR code to follow the NairaExchangeRate WhatsApp channel" width="160" height="160"></details></div>
@@ -516,12 +532,6 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
         <ul class="news" id="newsList"></ul>
       </section>
 
-      <section class="panel" id="partners" data-p="12">
-        <h2>Send money and bank smarter</h2>
-        <p class="sub">Accounts and transfer services our readers use.</p>
-        <div class="offers" id="offerList"></div>
-        <p class="disclose">Partner links. We may earn a commission if you open an account, at no cost to you. This is not financial advice; check each provider's fees and terms. <a href="/privacy#partners">How partner links work</a></p>
-      </section>
     </aside>
   </div>
 
@@ -711,7 +721,9 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
       var href = p.url || "#partners";
       var mark = p.logo ? '<img class="logo-img" src="'+esc(p.logo)+'" alt="'+esc(p.name)+' logo">' : '<div class="mono">'+esc(p.name.charAt(0))+'</div>';
       var qr = p.qr ? '<details class="qr"><summary>Show QR code</summary><img src="'+esc(p.qr)+'" alt="QR code for '+esc(p.name)+' offer" width="160" height="160"></details>' : '';
-      return '<div class="offer">'+mark+'<div><b>'+esc(p.name)+'</b><span>'+esc(p.text)+'</span>'+qr+'</div><a class="btn primary" href="'+esc(href)+'"'+(p.url?' target="_blank" rel="sponsored noopener"':'')+'>'+esc(p.cta)+'</a></div>';
+      var txt = esc(p.text);
+      if (p.code) txt = txt.split(esc(p.code)).join('<strong class="promo">'+esc(p.code)+'</strong>');
+      return '<div class="offer">'+mark+'<div><b>'+esc(p.name)+'</b><span>'+txt+'</span>'+qr+'</div><a class="btn primary" href="'+esc(href)+'"'+(p.url?' target="_blank" rel="sponsored noopener"':'')+'>'+esc(p.cta)+'</a></div>';
     }).join("");
   }
   function shareText(){
