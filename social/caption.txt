@@ -5,8 +5,8 @@ $1 = ₦1,346.43
 £1 = ₦1,807.05
 €1 = ₦1,502.67
 
-UK parallel rate (updated Sun 1 Nov 2026, 15:24):
-Send £1 → ₦1,825 · Buy £1 for ₦1,920
+UK parallel rate (updated Wed 4 Nov 2026, 02:24):
+Send £1 → ₦1,840 · Buy £1 for ₦1,920
 
 Live rates & converter: nairaexchangerate.com
 Daily rates on WhatsApp: https://whatsapp.com/channel/0029VbEJwXxCnA7nV3kcN73I
