@@ -131,6 +131,8 @@ td.r{font-family:var(--display);font-variant-numeric:tabular-nums;font-weight:70
 .box input{flex:1;min-width:0;border:0;background:transparent;padding:12px;font-family:var(--display);font-weight:800;font-size:1.25rem;outline:none}
 .box select{border:0;border-left:2px solid var(--ink);background:var(--surface);padding:0 12px;font-weight:700;cursor:pointer}
 .swap{justify-self:center;border:0;background:var(--red-soft);color:var(--red);width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;font-weight:800}
+.conv-cta{display:block;margin-top:4px;padding:10px 12px;border-radius:10px;background:var(--red-soft);color:var(--red);font-weight:800;font-size:.88rem;text-decoration:none}
+.conv-cta:hover{text-decoration:underline}
 .conv-note{font-size:.95rem;font-weight:700;color:var(--ink)}
 .conv-note b{font-weight:900}
 
@@ -284,9 +286,9 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
   "partners": [
     {
       "name": "Wise",
-      "text": "Send pounds to Nigerian bank accounts and hold multiple currencies.",
+      "text": "Send money from the UK straight to Nigerian bank accounts, with the fee shown upfront.",
       "cta": "Send money",
-      "url": "https://wise.com/invite/ilpc/jamese1590",
+      "url": "https://wise.prf.hn/click/camref:1101l6w3VG",
       "logo": "assets/wise.png"
     },
     {
@@ -537,6 +539,7 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
           <button class="swap" id="swap" type="button" aria-label="Swap currencies">⇅</button>
           <div class="field"><label for="out">You get</label><div class="box"><input id="out" type="text" readonly><select id="to" aria-label="To currency"></select></div></div>
           <div class="conv-note" id="convNote"></div>
+          <a class="conv-cta" id="convCta" href="https://wise.prf.hn/click/camref:1101l6w3VG" target="_blank" rel="sponsored noopener">Sending money to Nigeria? See Wise's rate and fee <span aria-hidden="true">→</span></a>
         </div>
       </section>
 
