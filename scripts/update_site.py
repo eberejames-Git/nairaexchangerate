@@ -9,7 +9,7 @@ matching keys in the site data:
   "parallel": {"send": 1825, "buy": 1920, "updated": "YYYY-MM-DDTHH:MM"}
               (history is appended automatically, max 30 days)
   "news":     [{"source":"..","title":"..","summary":"..","url":"https://..","date":"YYYY-MM-DD"}]
-              (new stories are added first; the list keeps the 6 newest)
+              (merged with existing stories, sorted newest first by date; keeps the 6 newest)
   "partners", "whatsappChannel": replaced as given.
 """
 import json, re, sys
@@ -56,6 +56,8 @@ def main(patch_path):
                 continue
             seen.add(n["url"])
             merged.append(n)
+        # Newest first by publication date (stable, so same-day order is kept).
+        merged.sort(key=lambda n: n.get("date", ""), reverse=True)
         data["news"] = merged[:6]
 
     for k in ("partners", "whatsappChannel"):
