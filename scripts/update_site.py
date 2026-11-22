@@ -33,6 +33,10 @@ def main(patch_path):
         for k, r in c["rates"].items():
             assert r["buy"] > 0 and r["middle"] > 0 and r["sell"] > 0, k
         data["cbn"] = c
+        h = data.setdefault("cbnHistory", {})
+        h[c["date"]] = {k: round(v["middle"], 4) for k, v in c["rates"].items()}
+        for k in sorted(h)[:-60]:
+            del h[k]
 
     if "parallel" in patch:
         p = patch["parallel"]
