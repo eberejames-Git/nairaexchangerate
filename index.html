@@ -118,6 +118,7 @@ td.r{font-family:var(--display);font-variant-numeric:tabular-nums;font-weight:70
 .cur{display:flex;align-items:center;gap:10px}
 .cur .code{font-family:var(--display);font-weight:800;font-size:1rem}
 .cur .nm{color:var(--muted);font-size:.82rem}
+.src-tag.x{color:var(--ink-2);border-color:var(--ink-2)}
 .src-tag{font-size:.65rem;font-weight:800;letter-spacing:.05em;color:var(--red);border:1px solid var(--red);border-radius:4px;padding:0 4px;vertical-align:middle}
 .badge{display:inline-grid;place-items:center;width:30px;height:22px;border-radius:5px;background:var(--surface);font-size:.7rem;font-weight:800;color:var(--ink-2);font-family:var(--display)}
 .chg{font-size:.85rem}
@@ -696,7 +697,7 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
 
       <section class="panel float no-edge" id="rates">
         <h2>Today's Naira rates</h2>
-        <p class="sub">Official rate: Naira for 1 unit of each currency. Tap a row to chart it.</p>
+        <p class="sub">Official rate: Naira for 1 unit of each currency. <b>CBN</b> = published by the Central Bank of Nigeria. <b>CBN $×</b> = the CBN does not publish this currency, so we work it out from the official CBN dollar rate. Tap a row to chart it.</p>
         <div class="tbl"><table>
           <thead><tr><th>Currency</th><th class="r">₦ per unit</th><th class="r">7-day</th></tr></thead>
           <tbody id="rateBody"></tbody>
@@ -922,9 +923,9 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
     // table
     $("rateBody").innerHTML = CURS.map(function(c){
       var now = nv(c[0]), isCbn = !!cbnRate(c[0]);
-      var mNow = isCbn ? now : perUnit(S.today,c[0]), then = isCbn ? cbnWeekAgo(c[0]) : perUnit(week,c[0]), ch = "—", cls = "";
+      var mNow = now, then = isCbn ? cbnWeekAgo(c[0]) : (crossRate(c[0], week) || perUnit(week,c[0])), ch = "—", cls = "";
       if (mNow && then){ var p = (mNow-then)/then*100; cls = p > 0.005 ? "down" : p < -0.005 ? "up" : ""; ch = (p>0?"+":"") + p.toFixed(2) + "%"; }
-      return '<tr data-c="'+c[0]+'"><td><div class="cur"><span class="badge">'+c[0].toUpperCase()+'</span><span><span class="code">'+c[0].toUpperCase()+'</span> <span class="nm">'+c[1]+'</span>'+(cbnRate(c[0])?' <span class="src-tag">CBN</span>':'')+'</span></div></td><td class="r">'+fmt(now)+'</td><td class="r chg '+cls+'">'+ch+'</td></tr>';
+      return '<tr data-c="'+c[0]+'"><td><div class="cur"><span class="badge">'+c[0].toUpperCase()+'</span><span><span class="code">'+c[0].toUpperCase()+'</span> <span class="nm">'+c[1]+'</span>'+(cbnRate(c[0])?' <span class="src-tag">CBN</span>':(isCross(c[0])?' <span class="src-tag x" title="Worked out from the official CBN dollar rate">CBN $×</span>':''))+'</span></div></td><td class="r">'+fmt(now)+'</td><td class="r chg '+cls+'">'+ch+'</td></tr>';
     }).join("");
     Array.prototype.forEach.call(document.querySelectorAll("#rateBody tr"), function(tr){
       tr.addEventListener("click", function(){ $("trendCur").value = tr.getAttribute("data-c"); drawChart(); });
@@ -1063,12 +1064,20 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
     ser.forEach(function(p){ if (p[0] <= target) best = p; });
     return best ? best[1] : null;
   }
-  function nv(c){ return c === "ngn" ? 1 : (cbnRate(c) || perUnit(S.today,c)); }
+  // CBN cross rate: for currencies the CBN does not publish, convert via the official CBN dollar rate.
+  function cbnUsdOn(date){ var ser = cbnSeries("usd"), v = ser.length ? ser[0][1] : null; ser.forEach(function(p){ if (p[0] <= date) v = p[1]; }); return v; }
+  function crossRate(c, day){
+    day = day || S.today; if (!day) return null;
+    var mc = perUnit(day,c), mu = perUnit(day,"usd"), u = cbnUsdOn(day.date);
+    return (mc && mu && u) ? u * mc / mu : null;
+  }
+  function isCross(c){ return !cbnRate(c) && !!crossRate(c); }
+  function nv(c){ return c === "ngn" ? 1 : (cbnRate(c) || crossRate(c) || perUnit(S.today,c)); }
   function convert(){
     if (!S.today) return;
     var a = parseFloat($("amt").value) || 0, f = $("from").value, t = $("to").value, r = nv(f)/nv(t);
     $("out").value = isFinite(r) ? fmt(a*r, a*r >= 1 ? 2 : 4) : "—";
-    $("convNote").innerHTML = "1 " + f.toUpperCase() + " = <b>" + fmt(r, r >= 1 ? 2 : 6) + " " + t.toUpperCase() + "</b>" + " · " + ((f==="ngn"||cbnRate(f)) && (t==="ngn"||cbnRate(t)) ? "Official CBN rate" : "Official market rate");
+    $("convNote").innerHTML = "1 " + f.toUpperCase() + " = <b>" + fmt(r, r >= 1 ? 2 : 6) + " " + t.toUpperCase() + "</b>" + " · " + ((f==="ngn"||cbnRate(f)) && (t==="ngn"||cbnRate(t)) ? "Official CBN rate" : "Based on the official CBN dollar rate");
   }
   function calcSend(){
     var a = parseFloat($("sendAmt").value) || 0;
@@ -1079,7 +1088,8 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
   function drawChart(){
     var c = $("trendCur").value, svg = $("chart");
     var official = !!cbnRate(c) && cbnSeries(c).length >= 2;
-    var pts = official ? cbnSeries(c) : Object.keys(S.hist).sort().map(function(d){ return [d, perUnit(S.hist[d],c)]; }).filter(function(p){ return p[1]; });
+    var cross = !official && cbnSeries("usd").length >= 1;
+    var pts = official ? cbnSeries(c) : Object.keys(S.hist).sort().map(function(d){ return [d, cross ? crossRate(c, S.hist[d]) : perUnit(S.hist[d],c)]; }).filter(function(p){ return p[1]; });
     if (pts.length < 2){ svg.innerHTML = ""; $("chartFoot").textContent = "Trend appears once a few days of rates are loaded."; return; }
     var v = pts.map(function(p){ return p[1]; }), lo = Math.min.apply(null,v), hi = Math.max.apply(null,v);
     var pad = (hi-lo)*0.2 || hi*0.01, y0 = lo-pad, y1 = hi+pad;
@@ -1099,7 +1109,7 @@ footer .wrap{padding-block:22px 34px;font-size:.84rem;color:var(--muted);display
     g += '<text x="'+L+'" y="182">'+dshort(pts[0][0])+'</text><text x="'+R+'" y="182" text-anchor="end">'+dshort(pts[last][0])+'</text>';
     svg.innerHTML = g;
     var p = (pts[last][1]-pts[0][1])/pts[0][1]*100;
-    $("chartFoot").innerHTML = (official ? "Official CBN rate, ₦ per 1 " : "Official market rate, ₦ per 1 ") + c.toUpperCase() + ". Change over period <b class='"+(p>0?"down":"up")+"'>"+(p>0?"+":"")+p.toFixed(2)+"%</b>" + (S.example ? " <span class='example'>Example trend</span>" : "");
+    $("chartFoot").innerHTML = (official ? "Official CBN rate, ₦ per 1 " : cross ? "Based on the official CBN dollar rate, ₦ per 1 " : "Market rate, ₦ per 1 ") + c.toUpperCase() + ". Change over period <b class='"+(p>0?"down":"up")+"'>"+(p>0?"+":"")+p.toFixed(2)+"%</b>" + (S.example ? " <span class='example'>Example trend</span>" : "");
   }
 
   // events
