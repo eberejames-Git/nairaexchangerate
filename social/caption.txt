@@ -1,9 +1,9 @@
-🇳🇬 Naira exchange rates · Fri 27 Nov 2026
+🇳🇬 Naira exchange rates · Sat 28 Nov 2026
 
-Official CBN rate (Thu 26 Nov 2026):
-$1 = ₦1,387.39
-£1 = ₦1,820.53
-€1 = ₦1,524.18
+Official CBN rate (Fri 27 Nov 2026):
+$1 = ₦1,366.95
+£1 = ₦1,792.76
+€1 = ₦1,496.54
 
 UK parallel rate (updated Mon 23 Nov 2026, 14:18):
 Send £1 → ₦1,875 · Buy £1 for ₦1,955
